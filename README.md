@@ -4,6 +4,12 @@ Cli application to show weather info for an address
 
 ```npm install```
 
+Create a file .env with the API keys from GMaps and OpenWeather APIs:
+```
+GMAPS_API=your_api_key
+OPENWEATHER_API=openweather_api_key
+```
+
 ## Usage
 
 ```
