@@ -24,4 +24,4 @@ Options:
 - Yargs: parsing arguments and generating an elegant user interface.
 - Axios: Promise based HTTP client for the browser and node.js
 - ES7: As I use Async/Await
-- dotenv: para gestion de las apis
+- dotenv: to load API keys from the .env file
