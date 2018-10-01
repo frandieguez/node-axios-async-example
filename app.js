@@ -1,27 +1,30 @@
+require('dotenv').load();
 const args = require('yargs').options( {
-  direccion : {
+  address : {
     demand: true,
-    alias: 'd'
+    alias: 'a'
   }
 }).argv;
-const {getLatLong} = require('./lugar/lugar');
-const { getWeather } = require('./weather/weather')
-require('dotenv').load();
+const { getLatLongForAddress } = require('./location/location');
+const { getWeatherForLatLong } = require('./weather/weather');
 
-let getInfo = async (direccion) => {
-
+/*
+ * Fetches the temp information for an address string
+ * @param {string} string - the address to get info for
+ */
+let getInfo = async (address) => {
   try {
-    let coors = await getLatLong(direccion)
+    let coors = await getLatLongForAddress(address)
 
-    let weather = await getWeather(coors.lat, coors.long)
+    let weather = await getWeatherForLatLong(coors.lat, coors.long)
 
-    return `El clima es de ${direccion} es de ${weather} C`;
+    return `The current temp for ${address} is ${weather} C`;
   } catch (error) {
-    return `No se pudo obtener la tempratura de ${direccion}`
+    return `Unable to fetch the temp for ${address}`
   }
 }
 
-getInfo(args.direccion)
+getInfo(args.address)
   .then( (weather) => {
     console.log(weather);
   })
